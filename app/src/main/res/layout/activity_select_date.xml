@@ -1,0 +1,403 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="false"
+    android:background="@color/white"
+    tools:context=".view.activity.SelectDate">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/select_date_edt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/reservation_name"
+            android:gravity="start|top"
+            android:inputType="textMultiLine"
+            />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="130dp"
+                android:layout_marginTop="2dp"
+                android:orientation="vertical"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
+                android:visibility="visible"
+                android:background="@drawable/set_date_border"
+                android:id="@+id/select_date_reservation_ll">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="4">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginRight="8dp"
+                        android:text="@string/detect_reservation"
+                        android:textColor="@color/black"
+                        android:textSize="19dp"
+                        android:textStyle="bold|italic" />
+
+
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="5"
+                    android:layout_marginTop="10dp">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_centerHorizontal="true"
+                        >
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal">
+
+                            <Button
+                                android:id="@+id/select_date_yes_btn"
+                                android:layout_width="wrap_content"
+                                android:layout_height="30dp"
+                                android:layout_marginLeft="20dp"
+                                android:layout_marginRight="20dp"
+                                android:background="@drawable/add_new_d"
+                                android:text="@string/yes"
+                                android:textColor="@color/colorBlue" />
+
+                            <Button
+                                android:id="@+id/select_date_no_btn"
+                                android:layout_width="wrap_content"
+                                android:layout_height="30dp"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginRight="10dp"
+                                android:background="@drawable/add_new_d"
+                                android:text="@string/no"
+                                android:textColor="@color/colorBlue" />
+
+                        </LinearLayout>
+
+                    </RelativeLayout>
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="130dp"
+                android:orientation="vertical"
+                android:visibility="gone"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
+                android:background="@drawable/set_date_border"
+                android:id="@+id/select_date_reservation_date_ll">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="2">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_centerVertical="true"
+                        android:id="@+id/select_date_back_ll">
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/delete"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginStart="4dp"
+                            />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/delete"
+                            android:layout_marginLeft="1dp"
+                            android:layout_marginStart="4dp"
+                            android:textColor="@color/black"/>
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="7"
+                    android:layout_marginTop="0dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="4dp"
+                        android:background="@drawable/detect_time_background">
+
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="3"
+                                >
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginLeft="8dp"
+                                        android:layout_marginRight="8dp"
+                                        android:textSize="17dp"
+                                        android:textStyle="italic"
+                                        android:textColor="@color/black"
+                                        android:id="@+id/select_date_reservation_date_tv"
+                                        android:text="@string/reservation_date"
+                                        />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginLeft="1dp"
+                                        android:layout_marginStart="20dp"
+                                        android:id="@+id/select_date_name_of_day_tv"
+                                        />
+
+                                </LinearLayout>
+
+
+                            </RelativeLayout>
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="7"
+                                >
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:orientation="horizontal"
+                                    android:weightSum="100">
+
+
+                                    <RelativeLayout
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="45">
+
+                                        <Button
+                                            android:id="@+id/select_date_start_at_btn"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="40dp"
+                                            android:layout_centerVertical="true"
+                                            android:layout_marginLeft="20dp"
+                                            android:layout_marginRight="20dp"
+                                            android:background="@drawable/add_new_d"
+                                            android:text="@string/start_at"
+                                            android:textAllCaps="false"
+                                            android:textColor="@color/colorBlue"
+                                            android:visibility="visible" />
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="1:00"
+                                            android:textStyle="bold"
+                                            android:textSize="22dp"
+                                            android:visibility="gone"
+                                            android:layout_centerHorizontal="true"
+                                            android:layout_centerVertical="true"
+                                            android:id="@+id/select_date_start_at_tv"
+                                            android:textColor="@color/black"/>
+
+                                    </RelativeLayout>
+
+                                    <RelativeLayout
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="10">
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text=":"
+                                            android:layout_centerHorizontal="true"
+                                            android:layout_centerVertical="true"
+                                            android:textColor="@color/black"
+                                            android:textSize="25dp"
+                                            android:textStyle="bold"/>
+
+                                    </RelativeLayout>
+
+                                    <RelativeLayout
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="45">
+
+                                        <Button
+                                            android:id="@+id/select_date_end_at_btn"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="40dp"
+                                            android:layout_marginLeft="20dp"
+                                            android:layout_marginRight="20dp"
+                                            android:background="@drawable/add_new_d"
+                                            android:text="@string/end_at"
+                                            android:visibility="gone"
+                                            android:layout_centerVertical="true"
+                                            android:textAllCaps="false"
+                                            android:textColor="@color/colorBlue" />
+
+                                        <TextView
+                                            android:id="@+id/select_date_end_at_tv"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_centerInParent="true"
+                                            android:text="--"
+                                            android:textColor="@color/black"
+                                            android:textSize="25dp"
+                                            android:textStyle="bold"
+                                            android:visibility="visible" />
+
+                                    </RelativeLayout>
+
+                                </LinearLayout>
+
+
+                            </RelativeLayout>
+
+                        </LinearLayout>
+
+                    </RelativeLayout>
+
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="130dp"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical"
+                android:visibility="gone"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
+                android:background="@drawable/set_date_border"
+                android:id="@+id/select_date_date_ll">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="3">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:id="@+id/select_date_back2_ll"
+                        android:layout_centerVertical="true">
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/next"
+                            android:rotation="180"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginStart="4dp"
+                            />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/back"
+                            android:textColor="@color/black"/>
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="7"
+                    >
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/select_date_recycler_view"
+                        android:layout_marginLeft="-2dp"
+                        android:layout_marginRight="-2dp"
+                        android:layout_marginBottom="1dp"
+                        />
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_margin="12dp"
+                android:background="@drawable/add_new_d"
+                android:id="@+id/select_date_reservation_rl"
+                android:layout_height="45dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_centerHorizontal="true"
+                    android:textColor="@color/colorBlue"
+                    android:text="@string/reservation"
+                    android:textStyle="bold"
+                    android:textSize="18dp"/>
+
+            </RelativeLayout>
+        </RelativeLayout>
+    </LinearLayout>
+
+
+
+
+</RelativeLayout>

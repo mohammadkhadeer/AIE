@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">AIE</string>
+
+    <string name="add">Add new</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="delete">Delete</string>
+    <string name="start_at">Start at</string>
+    <string name="end_at">Ent at</string>
+    <string name="today">Today</string>
+    <string name="back">Back</string>
+    <string name="detect_reservation">Your reservation today?</string>
+    <string name="reservation_date">Reservation date</string>
+    <string name="reservation">Reservation Now</string>
+    <string name="reservation_name">Reservation Name</string>
+</resources>
