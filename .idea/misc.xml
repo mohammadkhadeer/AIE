@@ -9,7 +9,7 @@
         <entry key="app/src/main/res/drawable/set_date_border.xml" value="0.23385416666666667" />
         <entry key="app/src/main/res/drawable/time_border.xml" value="0.23385416666666667" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.14" />
-        <entry key="app/src/main/res/layout/activity_select_date.xml" value="0.20153985507246377" />
+        <entry key="app/src/main/res/layout/activity_select_date.xml" value="0.22" />
         <entry key="app/src/main/res/layout/adapter_main_data.xml" value="0.25" />
         <entry key="app/src/main/res/layout/adapter_select_date.xml" value="0.20153985507246377" />
         <entry key="app/src/main/res/layout/adapter_select_time.xml" value="0.20153985507246377" />

@@ -13,4 +13,7 @@
     <string name="reservation_date">Reservation date</string>
     <string name="reservation">Reservation Now</string>
     <string name="reservation_name">Reservation Name</string>
+    <string name="creator_name">Creator Name</string>
+    <string name="reservation_message">Please fill all reservation details here jst to know must to fill all reservation info</string>
+
 </resources>

@@ -15,6 +15,9 @@ public class MainData implements Serializable {
     @ColumnInfo(name="name")
     private String name;
 
+    @ColumnInfo(name="creator_name")
+    private String creator_name;
+
     @ColumnInfo(name="time_range_date")
     private String time_range_date;
 
@@ -33,6 +36,14 @@ public class MainData implements Serializable {
 
     public void setID(int ID) {
         this.ID = ID;
+    }
+
+    public String getCreator_name() {
+        return creator_name;
+    }
+
+    public void setCreator_name(String creator_name) {
+        this.creator_name = creator_name;
     }
 
     public String getName() {

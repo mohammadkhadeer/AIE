@@ -1,72 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<androidx.core.widget.NestedScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fitsSystemWindows="false"
+    android:background="@color/white"
     tools:context=".view.activity.MainActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:weightSum="100">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <RelativeLayout
-            android:layout_width="0dp"
-            android:layout_height="40dp"
-            android:layout_weight="50">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="100">
 
             <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginStart="4dp"
-                android:layout_marginEnd="4dp"
-                android:layout_centerVertical="true"
-                android:id="@+id/main_activity_add_rl"
-                android:background="@drawable/add_new_d"
-                >
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/add"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="50">
 
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginEnd="4dp"
                     android:layout_centerVertical="true"
-                    android:textSize="18dp"
-                    android:textStyle="bold"
-                    android:textColor="@color/colorBlue"
-                    android:layout_centerHorizontal="true"
-                    android:id="@+id/main_activity_add_tv"/>
+                    android:id="@+id/main_activity_add_rl"
+                    android:background="@drawable/add_new_d"
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/add"
+
+                        android:layout_centerVertical="true"
+                        android:textSize="18dp"
+                        android:textStyle="bold"
+                        android:textColor="@color/colorBlue"
+                        android:layout_centerHorizontal="true"
+                        android:id="@+id/main_activity_add_tv"/>
+
+                </RelativeLayout>
 
             </RelativeLayout>
 
-        </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="45dp"
+                android:layout_weight="50">
 
-        <RelativeLayout
-            android:layout_width="0dp"
-            android:layout_height="45dp"
-            android:layout_weight="50">
+            </RelativeLayout>
 
-        </RelativeLayout>
+        </LinearLayout>
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/main_data_recycler_view"
+            android:layout_marginTop="10dp"
+
+            />
 
     </LinearLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:text="@string/reservation"
-        android:id="@+id/tiiiii"/>
 
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/main_data_recycler_view"
-        android:layout_marginTop="80dp"
-
-        />
-
-</RelativeLayout>
+</androidx.core.widget.NestedScrollView>

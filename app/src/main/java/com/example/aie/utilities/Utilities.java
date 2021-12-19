@@ -11,6 +11,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -131,10 +132,26 @@ public class Utilities {
         List<MainData> mainDataList;
         RoomDB database = RoomDB.getInstance(context);
         mainDataList = database.mainDao().getAll();
-        Log.i("TAG size",String.valueOf(mainDataList.size()));
         mainDataArrayList.addAll(mainDataList);
-        Log.i("TAG size",String.valueOf(mainDataArrayList.size()));
+        Collections.reverse(mainDataArrayList);
 
         return mainDataArrayList;
+    }
+
+    public static boolean checkIfReservationUsedBefore(Context context,String reservation_name) {
+        boolean used=true;
+        ArrayList<MainData> mainDataArrayList = new ArrayList<MainData>();
+
+        List<MainData> mainDataList;
+        RoomDB database = RoomDB.getInstance(context);
+        mainDataList = database.mainDao().getAll();
+        mainDataArrayList.addAll(mainDataList);
+
+        for (int i =0;i<mainDataArrayList.size();i++)
+        {
+            if (mainDataArrayList.get(i).getName().equals(reservation_name))
+                used =false;
+        }
+        return used;
     }
 }

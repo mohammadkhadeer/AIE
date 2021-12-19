@@ -55,6 +55,7 @@ public class MainActivity extends AppCompatActivity implements AdapterMainData.P
             if(resultCode == Activity.RESULT_OK){
                 //receive data from select activity
                 String reservation_name = data.getStringExtra("reservation_name");
+                String creator_name = data.getStringExtra("creator_name");
                 String date = data.getStringExtra("date");
                 String name_of_day = data.getStringExtra("name_of_day");
                 String start_at = data.getStringExtra("start_at");
@@ -64,6 +65,7 @@ public class MainActivity extends AppCompatActivity implements AdapterMainData.P
                 MainData mainData =new MainData();
                 getIntent().getSerializableExtra("MyClass");
                 mainData.setName(reservation_name);
+                mainData.setCreator_name(creator_name);
                 mainData.setTime_range_date(date);
                 mainData.setName_of_day(name_of_day);
                 mainData.setTime_range_start(start_at);

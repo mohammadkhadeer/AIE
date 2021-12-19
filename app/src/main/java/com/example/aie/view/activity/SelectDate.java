@@ -1,5 +1,6 @@
 package com.example.aie.view.activity;
 
+import static com.example.aie.utilities.Utilities.checkIfReservationUsedBefore;
 import static com.example.aie.utilities.Utilities.fillArrayListTime;
 import static com.example.aie.utilities.Utilities.fillArrayListTime2;
 import static com.example.aie.utilities.Utilities.getDate;
@@ -54,7 +55,7 @@ public class SelectDate extends AppCompatActivity implements AdapterSelectTime.P
     RecyclerView.LayoutManager layoutManagerDate;
 
     AdapterSelectDate adapterSelectDate;
-    EditText editText;
+    EditText editText,select_date_creator_edt;
 
     String date="",name_of_day="";
     int start_at=0,end_at=0;
@@ -82,23 +83,34 @@ public class SelectDate extends AppCompatActivity implements AdapterSelectTime.P
         select_date_reservation_rl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (start_at !=0 && end_at!=0 && !select_date_end_at_tv.getText().toString().isEmpty()
-                        && date != "" && name_of_day!="")
+                if (start_at !=0 && end_at!=0 && !editText.getText().toString().isEmpty()
+                       && !select_date_creator_edt.getText().toString().isEmpty() && date != "" && name_of_day!="")
                 {
-                    Intent resultIntent = new Intent();
-                    resultIntent.putExtra("reservation_name", editText.getText().toString());
-                    resultIntent.putExtra("date", date);
-                    resultIntent.putExtra("name_of_day", name_of_day);
-                    resultIntent.putExtra("start_at", select_date_start_at_tv.getText().toString());
-                    resultIntent.putExtra("end_at", select_date_end_at_tv.getText().toString());
-                    setResult(Activity.RESULT_OK, resultIntent);
-                    finish();
+                    if (checkIfReservationUsedBefore(getApplicationContext(),editText.getText().toString())==false)
+                    {
+                        Toast.makeText(SelectDate.this,"Already used this name for another reservation",Toast.LENGTH_SHORT).show();
+                    }else{
+                        backToMainActivity();
+                    }
+
                 }else{
                     Toast.makeText(SelectDate.this,"Must to fill all data",Toast.LENGTH_SHORT).show();
                 }
 
             }
         });
+    }
+
+    private void backToMainActivity() {
+        Intent resultIntent = new Intent();
+        resultIntent.putExtra("reservation_name", editText.getText().toString());
+        resultIntent.putExtra("creator_name", select_date_creator_edt.getText().toString());
+        resultIntent.putExtra("date", date);
+        resultIntent.putExtra("name_of_day", name_of_day);
+        resultIntent.putExtra("start_at", select_date_start_at_tv.getText().toString());
+        resultIntent.putExtra("end_at", select_date_end_at_tv.getText().toString());
+        setResult(Activity.RESULT_OK, resultIntent);
+        finish();
     }
 
     private void actionListenerToBack2() {
@@ -217,6 +229,7 @@ public class SelectDate extends AppCompatActivity implements AdapterSelectTime.P
         select_date_recycler_view= (RecyclerView) findViewById(R.id.select_date_recycler_view);
         select_date_reservation_rl= (RelativeLayout) findViewById(R.id.select_date_reservation_rl);
         editText = (EditText) findViewById(R.id.select_date_edt);
+        select_date_creator_edt= (EditText) findViewById(R.id.select_date_creator_edt);
     }
 
     private void statusBarColor() {
