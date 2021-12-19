@@ -51,19 +51,18 @@ public class MainActivity extends AppCompatActivity implements AdapterMainData.P
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        Log.w("TAG","onActivityResult sub category activity");
-        Log.w("TAG","onActivityResult cub category activity resultCode: "+String.valueOf(requestCode));
-
         if (requestCode == UPDATE_MAIN_LIST) {
             if(resultCode == Activity.RESULT_OK){
-                Log.w("TAG","Activity.RESULT_OK");
+                //receive data from select activity
                 String reservation_name = data.getStringExtra("reservation_name");
                 String date = data.getStringExtra("date");
                 String name_of_day = data.getStringExtra("name_of_day");
                 String start_at = data.getStringExtra("start_at");
                 String end_at = data.getStringExtra("end_at");
 
+                //init main_data obeject
                 MainData mainData =new MainData();
+                getIntent().getSerializableExtra("MyClass");
                 mainData.setName(reservation_name);
                 mainData.setTime_range_date(date);
                 mainData.setName_of_day(name_of_day);

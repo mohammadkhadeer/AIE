@@ -56,7 +56,8 @@ public class SelectDate extends AppCompatActivity implements AdapterSelectTime.P
     AdapterSelectDate adapterSelectDate;
     EditText editText;
 
-    String date,name_of_day;
+    String date="",name_of_day="";
+    int start_at=0,end_at=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,14 +82,21 @@ public class SelectDate extends AppCompatActivity implements AdapterSelectTime.P
         select_date_reservation_rl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent resultIntent = new Intent();
-                resultIntent.putExtra("reservation_name", editText.getText().toString());
-                resultIntent.putExtra("date", date);
-                resultIntent.putExtra("name_of_day", name_of_day);
-                resultIntent.putExtra("start_at", select_date_start_at_tv.getText());
-                resultIntent.putExtra("end_at", select_date_end_at_tv.getText());
-                setResult(Activity.RESULT_OK, resultIntent);
-                finish();
+                if (start_at !=0 && end_at!=0 && !select_date_end_at_tv.getText().toString().isEmpty()
+                        && date != "" && name_of_day!="")
+                {
+                    Intent resultIntent = new Intent();
+                    resultIntent.putExtra("reservation_name", editText.getText().toString());
+                    resultIntent.putExtra("date", date);
+                    resultIntent.putExtra("name_of_day", name_of_day);
+                    resultIntent.putExtra("start_at", select_date_start_at_tv.getText().toString());
+                    resultIntent.putExtra("end_at", select_date_end_at_tv.getText().toString());
+                    setResult(Activity.RESULT_OK, resultIntent);
+                    finish();
+                }else{
+                    Toast.makeText(SelectDate.this,"Must to fill all data",Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
     }
@@ -132,6 +140,7 @@ public class SelectDate extends AppCompatActivity implements AdapterSelectTime.P
         select_date_end_at_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                end_at=1;
                 startAtOrEndAtRVNow =2;
                 myDialog = new Dialog(SelectDate.this);
                 ShowPopup(timeStartAt);
@@ -143,6 +152,7 @@ public class SelectDate extends AppCompatActivity implements AdapterSelectTime.P
         select_date_start_at_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                start_at=1;
                 startAtOrEndAtRVNow =1;
                 myDialog = new Dialog(SelectDate.this);
                 ShowPopup(500);
@@ -162,6 +172,10 @@ public class SelectDate extends AppCompatActivity implements AdapterSelectTime.P
     }
 
     private void reSetSTime() {
+        start_at=0;
+        end_at=0;
+        date="";
+        name_of_day="";
         select_date_start_at_btn.setVisibility(View.VISIBLE);
         select_date_start_at_tv.setVisibility(View.GONE);
         select_date_end_at_btn.setVisibility(View.GONE);
@@ -215,7 +229,6 @@ public class SelectDate extends AppCompatActivity implements AdapterSelectTime.P
         myDialog.setContentView(R.layout.detect_time_popup);
 
         intiPopupComp(myDialog,StartAtOrEndAt);
-        //actionListenerToSelectTime();
         myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         myDialog.show();
     }
