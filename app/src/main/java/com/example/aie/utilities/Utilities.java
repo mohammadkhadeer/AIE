@@ -162,4 +162,20 @@ public class Utilities {
         }
         return used;
     }
+
+    public static int getItemID(RoomDB database,String reservation_name) {
+        int itemID=-1;
+        ArrayList<MainData> mainDataArrayList = new ArrayList<MainData>();
+
+        List<MainData> mainDataList;
+        mainDataList = database.mainDao().getAll();
+        mainDataArrayList.addAll(mainDataList);
+
+        for (int i =0;i<mainDataArrayList.size();i++)
+        {
+            if (mainDataArrayList.get(i).getName().equals(reservation_name))
+                itemID =mainDataArrayList.get(i).getID();
+        }
+        return itemID;
+    }
 }

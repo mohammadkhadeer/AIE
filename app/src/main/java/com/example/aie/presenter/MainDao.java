@@ -26,8 +26,8 @@ public interface MainDao {
     void delete(MainData mainData);
 
     //update
-    @Query("UPDATE table_name set time_range_date = :new_time_range_date WHERE ID = :sID")
-    void update(int sID,String new_time_range_date);
+    @Query("UPDATE table_name set name = :new_name WHERE ID = :sID")
+    void update(int sID,String new_name);
 
     //get all data
     @Query("SELECT * FROM table_name")

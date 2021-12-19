@@ -9,6 +9,7 @@
     <string name="end_at">Ent at</string>
     <string name="today">Today</string>
     <string name="back">Back</string>
+    <string name="edit">Edit</string>
     <string name="reset_all">Reset all</string>
     <string name="detect_reservation">Your reservation today?</string>
     <string name="reservation_date">Reservation date</string>

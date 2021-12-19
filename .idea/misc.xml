@@ -15,6 +15,7 @@
         <entry key="app/src/main/res/layout/adapter_select_date.xml" value="0.20153985507246377" />
         <entry key="app/src/main/res/layout/adapter_select_time.xml" value="0.20153985507246377" />
         <entry key="app/src/main/res/layout/detect_time_popup.xml" value="0.20153985507246377" />
+        <entry key="app/src/main/res/layout/edit_popup.xml" value="0.20153985507246377" />
       </map>
     </option>
   </component>

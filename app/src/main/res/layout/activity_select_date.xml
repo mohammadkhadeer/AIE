@@ -437,21 +437,24 @@
             android:layout_height="wrap_content">
 
             <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_margin="12dp"
-                android:background="@drawable/add_new_d"
                 android:id="@+id/select_date_reservation_rl"
-                android:layout_height="45dp">
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="12dp"
+                android:layout_marginBottom="12dp"
+                android:background="@drawable/add_new_d">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
                     android:layout_centerHorizontal="true"
-                    android:textColor="@color/colorBlue"
+                    android:layout_centerVertical="true"
                     android:text="@string/reservation"
-                    android:textStyle="bold"
-                    android:textSize="18dp"/>
+                    android:textColor="@color/colorBlue"
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
 
             </RelativeLayout>
         </RelativeLayout>

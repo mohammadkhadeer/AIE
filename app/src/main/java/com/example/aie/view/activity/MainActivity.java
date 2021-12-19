@@ -2,16 +2,23 @@ package com.example.aie.view.activity;
 
 import static com.example.aie.utilities.Utilities.fillMainData;
 import static com.example.aie.utilities.Utilities.getAllAsList;
+import static com.example.aie.utilities.Utilities.getItemID;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Activity;
+import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
+import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -23,7 +30,7 @@ import com.example.aie.view.adapters.AdapterMainData;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements AdapterMainData.PassMainData {
+public class MainActivity extends AppCompatActivity implements AdapterMainData.EditName {
     private static final int UPDATE_MAIN_LIST = 100;
     RelativeLayout add_new_rl;
     public ArrayList<MainData> mainDataArrayList = new ArrayList<MainData>();
@@ -122,8 +129,44 @@ public class MainActivity extends AppCompatActivity implements AdapterMainData.P
         main_activity_reset_all_rl= (RelativeLayout) findViewById(R.id.main_activity_reset_all_rl);
     }
 
-    @Override
-    public void onClickedMainDate(MainData mainData) {
 
+    @Override
+    public void onClickedEdit(MainData mainData,int position) {
+        createEditPopup(mainData,position);
     }
+
+    EditText editText;
+    RelativeLayout relativeLayout_edt;
+    private void createEditPopup(MainData mainData,int position) {
+        Dialog myDialog = new Dialog(MainActivity.this);
+        myDialog.setContentView(R.layout.edit_popup);
+        intiPopupComp(myDialog);
+
+        myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        myDialog.show();
+
+        int ID = getItemID(database,mainDataArrayList.get(position).getName());
+        editText.setText(mainDataArrayList.get(position).getName());
+        actionListenerToPopupEdt(ID,myDialog,MainActivity.this);
+    }
+
+    private void actionListenerToPopupEdt(int id,Dialog myDialog,Context context) {
+        relativeLayout_edt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                myDialog.dismiss();
+                String new_name = editText.getText().toString();
+                database.mainDao().update(id,new_name);
+                mainDataArrayList = new ArrayList<MainData>();
+
+                createRV();
+            }
+        });
+    }
+
+    private void intiPopupComp(Dialog myDialog) {
+        editText = (EditText) myDialog.findViewById(R.id.reservation_name_edt);
+        relativeLayout_edt = (RelativeLayout) myDialog.findViewById(R.id.edit_reservation_rl);
+    }
+
 }

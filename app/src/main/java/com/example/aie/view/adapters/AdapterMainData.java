@@ -1,19 +1,27 @@
 package com.example.aie.view.adapters;
 
+import static com.example.aie.utilities.Utilities.fillMainData;
+import static com.example.aie.utilities.Utilities.getItemID;
+
+import android.app.Dialog;
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.aie.R;
 import com.example.aie.database.RoomDB;
 import com.example.aie.model.Day;
 import com.example.aie.model.MainData;
+import com.example.aie.view.activity.SelectDate;
 
 import java.util.ArrayList;
 
@@ -22,15 +30,15 @@ public class AdapterMainData extends
     RoomDB database;
     private final Context context;
     public ArrayList<MainData> mainDataArrayList = new ArrayList<MainData>();
-    PassMainData passMainData;
+    EditName editName;
     public AdapterMainData(Context context
             , ArrayList<MainData> mainDataArrayList
-            , PassMainData passMainData
+            , EditName editName
     )
     {
         this.context = context;
         this.mainDataArrayList = mainDataArrayList;
-        this.passMainData = passMainData;
+        this.editName = editName;
         notifyDataSetChanged();
     }
 
@@ -66,7 +74,7 @@ public class AdapterMainData extends
         holder.edt_rl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                editName.onClickedEdit(mainDataArrayList.get(position),position);
             }
         });
     }
@@ -75,7 +83,7 @@ public class AdapterMainData extends
         holder.relativeLayout_cover.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                passMainData.onClickedMainDate(mainDataArrayList.get(position));
+//                passMainData.onClickedMainDate(mainDataArrayList.get(position));
             }
         });
 
@@ -95,6 +103,10 @@ public class AdapterMainData extends
 
     public interface PassMainData {
         void onClickedMainDate(MainData mainData);
+    }
+
+    public interface EditName {
+        void onClickedEdit(MainData mainData,int position);
     }
 
     @Override
