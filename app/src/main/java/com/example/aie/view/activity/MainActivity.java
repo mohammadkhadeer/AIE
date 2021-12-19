@@ -1,6 +1,7 @@
 package com.example.aie.view.activity;
 
 import static com.example.aie.utilities.Utilities.fillMainData;
+import static com.example.aie.utilities.Utilities.getAllAsList;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -29,14 +30,21 @@ public class MainActivity extends AppCompatActivity implements AdapterMainData.P
     AdapterMainData adapterMainData;
     RecyclerView recyclerView;
     RoomDB database;
+    RelativeLayout main_activity_reset_all_rl;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        statusBarColor();
+        database = RoomDB.getInstance(getApplicationContext());
         cast();
         actionListener();
         createRV();
+    }
+
+    private void statusBarColor() {
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
     }
 
     private void createRV() {
@@ -71,7 +79,6 @@ public class MainActivity extends AppCompatActivity implements AdapterMainData.P
                 mainData.setTime_range_start(start_at);
                 mainData.setTime_range_end(end_at);
 
-                database = RoomDB.getInstance(getApplicationContext());
                 database.mainDao().insert(mainData);
                 mainDataArrayList = new ArrayList<MainData>();
 
@@ -84,6 +91,18 @@ public class MainActivity extends AppCompatActivity implements AdapterMainData.P
 
     private void actionListener() {
         actionListenerToAddNew();
+        actionListenerToResetAll();
+    }
+
+    private void actionListenerToResetAll() {
+        main_activity_reset_all_rl.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                database.mainDao().reset(getAllAsList(getApplicationContext()));
+                mainDataArrayList = new ArrayList<MainData>();
+                createRV();
+            }
+        });
     }
 
     private void actionListenerToAddNew() {
@@ -100,6 +119,7 @@ public class MainActivity extends AppCompatActivity implements AdapterMainData.P
     private void cast() {
         add_new_rl = (RelativeLayout) findViewById(R.id.main_activity_add_rl);
         recyclerView = (RecyclerView) findViewById(R.id.main_data_recycler_view);
+        main_activity_reset_all_rl= (RelativeLayout) findViewById(R.id.main_activity_reset_all_rl);
     }
 
     @Override

@@ -57,13 +57,15 @@ public class AdapterMainData extends
     }
 
     private void fillInformationCard(Context context, int position, ViewHolder holder) {
-        holder.reservation_name.setText(mainDataArrayList.get(position).getName());
-        holder.reservation_date_and_day.setText(mainDataArrayList.get(position).getTime_range_date()
+        holder.reservation_name.setText(": "+mainDataArrayList.get(position).getName());
+        holder.creator_name.setText(": "+mainDataArrayList.get(position).getCreator_name());
+
+        holder.reservation_date_and_day.setText(": "+mainDataArrayList.get(position).getTime_range_date()
                 +"  "+mainDataArrayList.get(position).getName_of_day());
-        holder.reservation_time_range.setText(context.getResources().getString(R.string.start_at)+
-                ": "+ mainDataArrayList.get(position).getTime_range_start()+"        "
-                +context.getResources().getString(R.string.end_at)+": "
-                +mainDataArrayList.get(position).getTime_range_end());
+        holder.reservation_time_range.setText(
+                ": ["+ mainDataArrayList.get(position).getTime_range_start()+" : "
+
+                +mainDataArrayList.get(position).getTime_range_end()+"]");
     }
 
     public interface PassMainData {
@@ -77,11 +79,12 @@ public class AdapterMainData extends
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         RelativeLayout relativeLayout_cover;
-        TextView reservation_name,reservation_date_and_day,reservation_time_range;
+        TextView reservation_name,creator_name,reservation_date_and_day,reservation_time_range;
         public ViewHolder(View itemView) {
             super(itemView);
             relativeLayout_cover = (RelativeLayout) itemView.findViewById(R.id.cover) ;
             reservation_name = (TextView) itemView.findViewById(R.id.reservation_name) ;
+            creator_name = (TextView) itemView.findViewById(R.id.creator_name) ;
             reservation_date_and_day = (TextView) itemView.findViewById(R.id.reservation_date_and_day) ;
             reservation_time_range = (TextView) itemView.findViewById(R.id.reservation_time_range) ;
         }

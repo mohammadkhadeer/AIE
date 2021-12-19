@@ -138,6 +138,14 @@ public class Utilities {
         return mainDataArrayList;
     }
 
+    public static List<MainData> getAllAsList(Context context) {
+        List<MainData> mainDataList;
+        RoomDB database = RoomDB.getInstance(context);
+        mainDataList = database.mainDao().getAll();
+
+        return mainDataList;
+    }
+
     public static boolean checkIfReservationUsedBefore(Context context,String reservation_name) {
         boolean used=true;
         ArrayList<MainData> mainDataArrayList = new ArrayList<MainData>();

@@ -9,11 +9,15 @@
     <string name="end_at">Ent at</string>
     <string name="today">Today</string>
     <string name="back">Back</string>
+    <string name="reset_all">Reset all</string>
     <string name="detect_reservation">Your reservation today?</string>
     <string name="reservation_date">Reservation date</string>
     <string name="reservation">Reservation Now</string>
+    <string name="reservation_start">Reservation Start</string>
     <string name="reservation_name">Reservation Name</string>
     <string name="creator_name">Creator Name</string>
+    <string name="time_range">Reservation time</string>
     <string name="reservation_message">Please fill all reservation details here jst to know must to fill all reservation info</string>
+    <string name="aie_task">Mohammad Obeidat AIE task</string>
 
 </resources>
