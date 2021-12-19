@@ -11,6 +11,7 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.aie.R;
+import com.example.aie.database.RoomDB;
 import com.example.aie.model.Day;
 import com.example.aie.model.MainData;
 
@@ -18,7 +19,7 @@ import java.util.ArrayList;
 
 public class AdapterMainData extends
         RecyclerView.Adapter<AdapterMainData.ViewHolder>{
-
+    RoomDB database;
     private final Context context;
     public ArrayList<MainData> mainDataArrayList = new ArrayList<MainData>();
     PassMainData passMainData;
@@ -35,6 +36,7 @@ public class AdapterMainData extends
 
     public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType)
     {
+        database = RoomDB.getInstance(context);
         View view = LayoutInflater.from(viewGroup.getContext()).
                 inflate(R.layout.adapter_main_data, viewGroup, false);
         return new ViewHolder(view);
@@ -44,6 +46,29 @@ public class AdapterMainData extends
     public void onBindViewHolder(ViewHolder holder, int position) {
         fillInformationCard(context,position,holder);
         changeColorCoverWhenTutch(holder,position,context);
+        actionListenerToEdt(holder,position,context);
+        actionListenerToDelete(holder,position,context);
+    }
+
+    private void actionListenerToDelete(ViewHolder holder, int position, Context context) {
+        holder.delete_rl.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                database.mainDao().delete(mainDataArrayList.get(position));
+                mainDataArrayList.remove(position);
+                notifyItemRemoved(position);
+                notifyItemRangeChanged(position,mainDataArrayList.size());
+            }
+        });
+    }
+
+    private void actionListenerToEdt(ViewHolder holder, int position, Context context) {
+        holder.edt_rl.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
     }
 
     private void changeColorCoverWhenTutch(final ViewHolder holder, final int position, final Context context) {
@@ -78,11 +103,13 @@ public class AdapterMainData extends
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        RelativeLayout relativeLayout_cover;
+        RelativeLayout relativeLayout_cover,edt_rl,delete_rl;
         TextView reservation_name,creator_name,reservation_date_and_day,reservation_time_range;
         public ViewHolder(View itemView) {
             super(itemView);
             relativeLayout_cover = (RelativeLayout) itemView.findViewById(R.id.cover) ;
+            edt_rl = (RelativeLayout) itemView.findViewById(R.id.edit) ;
+            delete_rl = (RelativeLayout) itemView.findViewById(R.id.delete) ;
             reservation_name = (TextView) itemView.findViewById(R.id.reservation_name) ;
             creator_name = (TextView) itemView.findViewById(R.id.creator_name) ;
             reservation_date_and_day = (TextView) itemView.findViewById(R.id.reservation_date_and_day) ;
