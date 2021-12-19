@@ -13,8 +13,10 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -25,6 +27,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.aie.R;
+import com.example.aie.broadcastReciever.ConnectivityReceiver;
 import com.example.aie.database.RoomDB;
 import com.example.aie.model.Day;
 import com.example.aie.model.MainData;
@@ -40,16 +43,34 @@ public class MainActivity extends AppCompatActivity implements AdapterMainData.E
     RecyclerView recyclerView;
     RoomDB database;
     RelativeLayout main_activity_reset_all_rl;
+    ConnectivityReceiver connectivityReceiver;
+    IntentFilter intentFilter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         statusBarColor();
+        intentFilter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
         database = RoomDB.getInstance(getApplicationContext());
         cast();
         actionListener();
         createRV();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        //registerReceiver(connectivityReceiver, intentFilter);
+    }
+
+    @Override
+    protected void onPause() {
+        if(connectivityReceiver != null) {
+            unregisterReceiver(connectivityReceiver);
+            connectivityReceiver = null;
+        }
+        super.onPause();
     }
 
     private void statusBarColor() {
