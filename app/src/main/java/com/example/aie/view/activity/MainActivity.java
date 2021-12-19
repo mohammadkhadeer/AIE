@@ -1,5 +1,6 @@
 package com.example.aie.view.activity;
 
+import static com.example.aie.utilities.Utilities.checkIfReservationUsedBefore;
 import static com.example.aie.utilities.Utilities.fillMainData;
 import static com.example.aie.utilities.Utilities.getAllAsList;
 import static com.example.aie.utilities.Utilities.getItemID;
@@ -21,6 +22,7 @@ import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.aie.R;
 import com.example.aie.database.RoomDB;
@@ -154,12 +156,18 @@ public class MainActivity extends AppCompatActivity implements AdapterMainData.E
         relativeLayout_edt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                myDialog.dismiss();
-                String new_name = editText.getText().toString();
-                database.mainDao().update(id,new_name);
-                mainDataArrayList = new ArrayList<MainData>();
+                if (!editText.getText().toString().isEmpty() &&
+                        checkIfReservationUsedBefore(getApplicationContext(),editText.getText().toString())!=false)
+                {
+                    myDialog.dismiss();
+                    String new_name = editText.getText().toString();
+                    database.mainDao().update(id,new_name);
+                    mainDataArrayList = new ArrayList<MainData>();
 
-                createRV();
+                    createRV();
+                }else{
+                    Toast.makeText(MainActivity.this,"reservation can't be empty or use it in another reservation",Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
